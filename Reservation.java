@@ -14,7 +14,11 @@
  *
  * @version 5.0
  */
-public class Reservation {
+import java.io.Serializable;
+
+public class Reservation implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /** Name of the guest making the booking. */
     private String guestName;

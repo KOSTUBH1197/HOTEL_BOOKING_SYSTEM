@@ -20,7 +20,11 @@ import java.util.Map;
  *
  * @version 3.1
  */
-public class RoomInventory {
+import java.io.Serializable;
+
+public class RoomInventory implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Stores available room count for each room type.

@@ -16,7 +16,11 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class BookingHistory {
+import java.io.Serializable;
+
+public class BookingHistory implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * List that stores confirmed reservations.
