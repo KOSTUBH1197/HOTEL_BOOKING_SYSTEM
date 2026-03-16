@@ -54,8 +54,9 @@ public class RoomAllocationService {
      *
      * @param reservation booking request
      * @param inventory centralized room inventory
+     * @return allocated room ID when successful; null otherwise
      */
-    public void allocateRoom(Reservation reservation, RoomInventory inventory) {
+    public String allocateRoom(Reservation reservation, RoomInventory inventory) {
         String roomType = reservation.getRoomType();
         Map<String, Integer> availability = inventory.getRoomAvailability();
 
@@ -63,20 +64,23 @@ public class RoomAllocationService {
         if (availability.get(roomType) > 0) {
             // Generate unique room ID
             String roomId = generateRoomID(roomType);
-            
+
             // Record allocation
             allocatedRoomIds.add(roomId);
             assignedRoomsByType.get(roomType).add(roomId);
-            
+
             // Update inventory immediately
             int currentCount = availability.get(roomType);
             inventory.updateAvailability(roomType, currentCount - 1);
-            
+
             // Confirm reservation
-            System.out.println("Reservation confirmed for " + reservation.getGuestName() + 
+            System.out.println("Reservation confirmed for " + reservation.getGuestName() +
                              ". Room: " + roomId + " allocated");
+
+            return roomId;
         } else {
             System.out.println("No " + roomType + " available for " + reservation.getGuestName());
+            return null;
         }
     }
 

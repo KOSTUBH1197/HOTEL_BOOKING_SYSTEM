@@ -51,4 +51,11 @@ public class Reservation implements Serializable {
         return roomType;
     }
 
+    /**
+     * @return stable reservation ID (guest + room type)
+     */
+    public String getReservationId() {
+        return guestName + "-" + roomType;
+    }
+
 }

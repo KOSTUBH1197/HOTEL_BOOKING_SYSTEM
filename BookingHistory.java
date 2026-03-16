@@ -52,4 +52,14 @@ public class BookingHistory implements Serializable {
     public List<Reservation> getConfirmedReservations() {
         return confirmedReservations;
     }
+
+    /**
+     * Removes a reservation from history.
+     *
+     * @param reservationId reservation identifier
+     * @return true if removed, false if not found
+     */
+    public boolean removeReservation(String reservationId) {
+        return confirmedReservations.removeIf(r -> r.getReservationId().equals(reservationId));
+    }
 }
