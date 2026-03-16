@@ -67,6 +67,9 @@ public class RoomInventory {
      * @param count new availability count
      */
     public void updateAvailability(String roomType, int count) {
+        if (count < 0) {
+            throw new IllegalArgumentException("Inventory count cannot be negative for room type: " + roomType);
+        }
         roomAvailability.put(roomType, count);
     }
 
